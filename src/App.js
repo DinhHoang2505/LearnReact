@@ -1,74 +1,60 @@
-import { useState } from 'react'
+import { useRef } from "react";
+import "./App.css"
+// import { useStore, actions } from './store'
+import Video from "./Video"
 
 function App() {
+  // const [state, dispatch] = useStore()
+  // const { todos, todoInput } = state
+  // const inputRef = useRef()
+  const videoRef = useRef()
 
-  const courses = [
-    {
-      id: 1,
-      name: 'Javascript',
-      price: 1000
-    },
-    {
-      id: 2,
-      name: 'PHP',
-      price: 2000
-    },
-    {
-      id: 3,
-      name: 'Python',
-      price: 3000
-    },
-    {
-      id: 4,
-      name: 'HTML',
-      price: 3000
-    },
-    {
-      id: 5,
-      name: 'C++',
-      price: 3000
-    },
-  ]
 
-  const [checked, setChecked] = useState([])
+  // const handleAdd = () => {
+  //   if (todoInput.length > 0) {    
+  //     dispatch(actions.addTodoInput(todoInput))
+  //     dispatch(actions.setTodoInput(''))
+  //     inputRef.current.focus()
+  //   }
+  // }
 
-  console.log(checked);
-
-  const handleCheck = (id) => {
-    setChecked((prev) => {
-      const isChecked = checked.includes(id)
-      if (isChecked) {
-        return checked.filter(item => {
-          return item !== id
-        })
-      } else {
-        return [...prev, id]
-      }
-    })
+  // const handleDelete = (i) => {
+  //   dispatch(actions.deleteTodoInput(i))
+  // }
+  const handlePlay = () => {
+    videoRef.current.play()
   }
 
-  const handleSubmit = () => {
-    // console.log(courses[checked - 1].name);
+  const handlePause = () => {
+    videoRef.current.pause()
   }
 
   return (
-    <div className="App" style={{ padding: '32px' }}>
-      {
-        courses.map((course) =>
-          <div key={course.id}>
-            <input
-              type="checkbox"
-              id={course.id}
-              onChange={() => handleCheck(course.id)}
-              checked={checked.includes(course.id)}
-            />
-            <label htmlFor={course.id}>{course.name}</label>
-          </div>
-        )
-      }
-      <br />
-      <button onClick={handleSubmit}>Register</button>
+    <div style={{ padding: "32px" }}>
+      {/* <div>
+        <h1>Todo useReducer + state</h1>
+        <input type="text"
+          value={todoInput}
+          ref={inputRef}
+          placeholder="Enter to do..."
+          onChange={e => {
+            dispatch(actions.setTodoInput(e.target.value));
+          }}
+        />
+        <button onClick={handleAdd}>Add</button>
+        <ul>
+          {todos.map((todo, i) =>
+            <li key={i}>{todo} <span onClick={() => handleDelete(i)}>x</span></li>
+          )}
+        </ul>
+      </div> */}
+      <div>
+        <button onClick={handlePlay}>Play</button>
+        <button onClick={handlePause}>Pause</button>
+      </div>
+      <Video ref={videoRef} />
     </div>
+
   );
 }
 
