@@ -17,3 +17,39 @@
     justify-content: space-between;
     align-items: center;
 }
+
+.header-search {
+    width: 361px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.header-search-input {
+    width: 100%;
+    border: none;
+    outline: none;
+    padding: 12px 18px;
+    border-radius: 20px;
+    font-size: 16px;
+    appearance: textfield;
+}
+
+.header-search-spliter {
+    width: 1px;
+    height: calc(100% - 10px);
+    background: rgba(22, 24, 35, .12);
+    position: absolute;
+    right: 45px;
+}
+
+
+.header-search-icon {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+}
