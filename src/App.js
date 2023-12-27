@@ -1,58 +1,46 @@
-import { useRef } from "react";
-import "./App.css"
-// import { useStore, actions } from './store'
-import Video from "./Video"
+import { Link } from "react-router-dom";
+import { Route, Routes } from "react-router";
+
+import "~/App.css";
+import { publicRoutes } from '~/routes'
+import { DefaultLayout } from '~/component/Layout';
+import { Fragment } from "react";
 
 function App() {
-  // const [state, dispatch] = useStore()
-  // const { todos, todoInput } = state
-  // const inputRef = useRef()
-  const videoRef = useRef()
-
-
-  // const handleAdd = () => {
-  //   if (todoInput.length > 0) {    
-  //     dispatch(actions.addTodoInput(todoInput))
-  //     dispatch(actions.setTodoInput(''))
-  //     inputRef.current.focus()
-  //   }
-  // }
-
-  // const handleDelete = (i) => {
-  //   dispatch(actions.deleteTodoInput(i))
-  // }
-  const handlePlay = () => {
-    videoRef.current.play()
-  }
-
-  const handlePause = () => {
-    videoRef.current.pause()
-  }
-
   return (
-    <div style={{ padding: "32px" }}>
-      {/* <div>
-        <h1>Todo useReducer + state</h1>
-        <input type="text"
-          value={todoInput}
-          ref={inputRef}
-          placeholder="Enter to do..."
-          onChange={e => {
-            dispatch(actions.setTodoInput(e.target.value));
-          }}
-        />
-        <button onClick={handleAdd}>Add</button>
-        <ul>
-          {todos.map((todo, i) =>
-            <li key={i}>{todo} <span onClick={() => handleDelete(i)}>x</span></li>
-          )}
+    <div className="App">
+      {/* <nav >
+        <ul style={{ display: 'flex', justifyContent: "space-around", width: '600px' }}>
+          <li><Link to="/">Home</Link></li>
+          <li><Link to="/following">Following</Link></li>
+          <li><Link to="/search">Search</Link></li>
+          <li><Link to="/profile">Profile</Link></li>
+          <li><Link to="/upload">Upload</Link></li>
         </ul>
-      </div> */}
-      <div>
-        <button onClick={handlePlay}>Play</button>
-        <button onClick={handlePause}>Pause</button>
-      </div>
-      <Video ref={videoRef} />
+      </nav> */}
+      <Routes>
+        {publicRoutes.map((route, index) => {
+
+          let Layout = DefaultLayout;
+          if (route.layout) {
+            Layout = route.layout
+          } else if (route.layout === null) {
+            Layout = Fragment
+          }
+          const Page = route.component
+          return (
+            < Route
+              key={index}
+              path={route.path}
+              element={
+                <Layout>
+                  <Page />
+                </Layout>
+              } />
+          )
+        })}
+      </Routes>
+
     </div>
 
   );

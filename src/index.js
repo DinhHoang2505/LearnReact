@@ -1,15 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App';
+import App from '~/App';
 import reportWebVitals from './reportWebVitals';
-import { StoreProvider }
-  from './store';
+import GlobalStyles from "~/component/GlobalStyles/GlobalStyles";
+import { BrowserRouter as Route } from "react-router-dom";
+
+
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <StoreProvider>
-      <App />
-    </StoreProvider>
+    <GlobalStyles>
+      <Route>
+        <App />
+      </Route>
+    </GlobalStyles>
   </React.StrictMode>
 );
 

@@ -1,0 +1,15 @@
+.wrapper {}
+
+.container {
+    max-width: var(--width);
+    height: 100vh;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+
+}
+
+.content {
+    flex: 1;
+    background-color: antiquewhite;
+}
